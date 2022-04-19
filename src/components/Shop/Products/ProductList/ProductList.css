@@ -1,0 +1,19 @@
+.product-list {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	font-size: 1.5rem;
+	width: 100%;
+}
+.product-list hr {
+	width: 90%;
+}
+
+.product-list__list-view {
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: nowrap;
+	width: 100%;
+}

@@ -1,0 +1,42 @@
+.footer {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	gap: 10rem;
+	padding: 2rem;
+	width: 100%;
+	color: var(--color-white);
+	background-color: var(--color-blue);
+}
+
+.footer__brand-info--brand-name {
+	display: inline-block;
+	padding: 0.5rem;
+	margin-bottom: 1.2rem;
+	color: var(--color-gold);
+	background-color: var(--color-blue);
+	border: 2px solid var(--color-gold);
+	border-radius: 10px;
+}
+.footer__brand-info--brand-name span {
+	color: var(--color-white);
+}
+.footer__brand-info--brand-address {
+	font-size: 2rem;
+}
+.footer__brand-info--brand-name,
+.footer__follow-us,
+.footer__contact {
+	margin-top: 2rem;
+	font-size: 2rem;
+}
+.footer__follow-us--icons {
+	font-size: 5rem;
+}
+
+.footer__copyright {
+	flex: 100%;
+	text-align: center;
+	font-size: 1.2rem;
+}

@@ -1,0 +1,115 @@
+.product-detail {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 5rem;
+	padding: 5rem;
+	background-color: var(--color-white);
+}
+.product-detail__img {
+	display: grid;
+	place-items: center;
+	border-radius: 15px;
+	width: 90%;
+	max-height: 50rem;
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+}
+.product-detail__img img {
+	width: 65%;
+	max-width: 50rem;
+	background-position: center;
+	background-size: cover;
+}
+.product-detail__info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 5rem;
+}
+.product-detail__info h4,
+.product-detail__info p {
+	font-size: 2.5rem;
+}
+.product-detail__shipping-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-size: 3rem;
+	font-weight: 300;
+}
+.product-detail__shipping-info--deilvery,
+.product-detail__shipping-info--return,
+.product-detail__shipping-info--resell {
+	display: flex;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid var(--color-grey);
+}
+.product-detail__shipping-info--deilvery span {
+	color: grey;
+}
+.product-detail__description {
+	grid-column: 1/3;
+	text-align: justify;
+	font-size: 2rem;
+	font-weight: 300;
+}
+.product-detail__description h5 {
+	font-size: 2rem;
+}
+.product-detail__description hr {
+	width: 13rem;
+	margin-bottom: 1.5rem;
+}
+
+.product-detail__info button {
+	border-radius: 5px;
+	padding: 1rem 2rem;
+	margin-top: 2rem;
+	font-size: 2rem;
+	text-transform: capitalize;
+	color: var(--color-black);
+	background-color: var(--color-gold);
+	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+
+	border: 1px solid goldenrod;
+	transition: 0.3s ease;
+	cursor: pointer;
+}
+.product-detail__info button:hover {
+	color: var(--color-gold);
+	background-color: var(--color-white);
+}
+.product-detail__shipping-info p {
+	margin-left: 1rem;
+}
+
+@media (max-width: 992px) {
+	.product-detail__info h4,
+	.product-detail__info p {
+		font-size: 2rem;
+	}
+	.product-detail__shipping-info {
+		font-size: 2.5rem;
+	}
+}
+@media (max-width: 768px) {
+	.product-detail {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		padding: 5rem;
+		background-color: var(--color-white);
+	}
+	.product-detail__img {
+		width: 100%;
+		max-height: 70rem;
+		box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+		overflow: hidden;
+	}
+	.product-detail__img img {
+		padding: 2rem;
+		width: 70%;
+	}
+}

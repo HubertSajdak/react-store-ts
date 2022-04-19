@@ -1,0 +1,102 @@
+.form-modal {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 500;
+	overflow: hidden;
+}
+.form-modal__modal-bg {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(33, 33, 34, 0.5);
+}
+.form-modal__login-container {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1rem;
+	height: 70%;
+	width: 80%;
+	max-width: 50rem;
+	border: 3px solid var(--color-gold);
+	border-radius: 25px;
+	background-color: var(--color-white);
+	overflow: hidden;
+}
+.form-modal__login-container_username,
+.form-modal__login-container_email,
+.form-modal__login-container_password {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+}
+.form-modal__login-container h4 {
+	font-size: 4rem;
+}
+.form-modal__login-container input {
+	width: 100%;
+	font-size: 2.5rem;
+	margin-bottom: 0.5rem;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 2px 3px 7px grey;
+}
+.form-modal__login-container p {
+	text-align: center;
+	font-size: 1.5rem;
+}
+.form-modal__login-container span {
+	color: var(--color-gold);
+	cursor: pointer;
+}
+.form-modal__login-container span:hover {
+	color: #d38200;
+}
+.form-modal__form-button {
+	border: none;
+	border-radius: 8px;
+	font-size: 2rem;
+	padding: 1rem 2rem;
+	background-color: var(--color-gold);
+	cursor: pointer;
+	box-shadow: 2px 3px 7px grey;
+	transition: 0.3s ease;
+}
+.form-modal__form-button:hover {
+	background-color: var(--color-white);
+}
+.form-modal__disabled-button {
+	background-color: var(--color-white);
+	cursor: not-allowed;
+}
+.form-modal__error-info {
+	font-weight: bold;
+	padding: 0.5rem 2rem;
+	border-radius: 8px;
+	color: var(--color-white);
+	background-color: tomato;
+}
+.form-modal__login-container--close-icon {
+	position: absolute;
+	font-size: 4rem;
+	top: 1rem;
+	right: 1rem;
+	cursor: pointer;
+}
+@media (max-width: 576px) {
+	.form-modal__login-container h4 {
+		font-size: 3rem;
+	}
+	.form-modal__login-container input {
+		font-size: 2rem;
+		height: 5rem;
+	}
+}

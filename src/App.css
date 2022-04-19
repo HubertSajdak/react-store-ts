@@ -1,0 +1,17 @@
+.section__wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+	border-left: 3px solid var(--color-blue);
+	border-right: 3px solid var(--color-blue);
+}
+.slider,
+.shop-navigation,
+.product-list {
+	background-color: var(--color-white);
+}
+
+@media (max-width: 1200px) {
+	.section__wrapper {
+		border: none;
+	}
+}
