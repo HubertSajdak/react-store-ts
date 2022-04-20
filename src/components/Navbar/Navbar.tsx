@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { userAuthActions, loginAuthActions } from '../../store/userAuth-slice'
@@ -7,15 +7,15 @@ import { BsCart2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'
 import './Navbar.css'
 import { RootState } from '../../store'
-const Navbar = (): React.ReactNode => {
+const Navbar = () => {
 	const dispatch = useDispatch()
 	const counter: number = useSelector((state: RootState) => state.cart.totalQuantity)
 	const isToken = localStorage.getItem('idToken')
 	const isLoggedIn: boolean = useSelector((state: RootState) => state.logAuth.isLogged)
 	const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false)
 	const [isProfileMenuOpen, setIsProfileMenuOpen] = useState<boolean>(false)
-	const sideMenuRef = useRef<HTMLUListElement>(null)
-	const profileMenuRef = useRef<HTMLUListElement>(null)
+	const sideMenuRef = useRef<HTMLUListElement | null>(null)
+	const profileMenuRef = useRef<HTMLUListElement | null>(null)
 	const logoutTimerRef = useRef<number | undefined>(undefined)
 
 	// when token is truthy user can open the profile dropdown menu by pressing the profile icon
@@ -29,12 +29,12 @@ const Navbar = (): React.ReactNode => {
 
 	// when user press the logout in the profile dropdown menu, token is being removed from the locale storage
 
-	const logoutHandler = (): void => {
+	const logoutHandler = useCallback((): void => {
 		if (isToken !== null) {
 			setIsProfileMenuOpen(false)
 			dispatch(loginAuthActions.userLogout())
 		}
-	}
+	}, [dispatch, isToken])
 	// handling the form modal
 
 	const modalFormHandler = (): void => {
@@ -62,16 +62,16 @@ const Navbar = (): React.ReactNode => {
 		return () => {
 			document.removeEventListener('visibilitychange', autoLogout)
 		}
-	}, [])
+	}, [logoutHandler])
 
 	// user can close the smallscreen side menu by pressing anywhere outside menu
 
 	useEffect(() => {
-		let sideMenuHandler = (e: { target: Node | null }): void => {
-			if (!sideMenuRef.current!.contains(e.target)) {
+		let sideMenuHandler = (e: MouseEvent): void => {
+			if (!sideMenuRef.current!.contains(e.target as Node)) {
 				setIsSideMenuOpen(false)
 			}
-			if (!profileMenuRef.current!.contains(e.target)) {
+			if (!profileMenuRef.current!.contains(e.target as Node)) {
 				setIsProfileMenuOpen(false)
 			}
 		}

@@ -1,4 +1,4 @@
-import React, { ReactElement, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getClothes } from './store/fetchapi-slice'
@@ -22,7 +22,7 @@ function App() {
 	const isFormModalOpen = useSelector((state: RootState) => state.userAuth.formModalOpen)
 	useEffect(() => {
 		dispatch(getClothes())
-	}, [])
+	}, [dispatch])
 	return (
 		<div>
 			{isFormModalOpen && <FormModal />}

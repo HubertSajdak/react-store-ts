@@ -6,36 +6,28 @@ import { MdAssignmentReturn, MdSell } from 'react-icons/md'
 import { cartActions } from '../../../../store/cart-slice'
 import './ProductDetail.css'
 import { RootState } from '../../../../store'
-import { GetClothesProps } from '../../../../store/fetchapi-slice'
 
 interface UseParamsProps {
 	productId: string
 }
-interface ProductDetailProps {
-	id: string
-	title: string
-	price: number
-	category: string
-	description: string
-	image: string
-}
-;[]
+
 const ProductDetail = () => {
 	const params = useParams<UseParamsProps>()
 	const clothesData = useSelector((state: RootState) => state.fetchClothes.clothes)
-	const inspectedProduct: ProductDetailProps = clothesData.find(
-		(product: GetClothesProps) => product.id === params.productId
-	)
+	const inspectedProduct = clothesData.find(product => product.id === params.productId)
 	const dispatch = useDispatch()
 	const addItemToCartHandler = () => {
 		dispatch(
 			cartActions.addItemToCart({
-				id: inspectedProduct.id,
-				title: inspectedProduct.title,
-				price: inspectedProduct.price,
-				image: inspectedProduct.image,
+				id: `${inspectedProduct!.id}`,
+				title: inspectedProduct!.title,
+				price: inspectedProduct!.price,
+				image: inspectedProduct!.image,
 			})
 		)
+	}
+	if (!inspectedProduct) {
+		return <h1 style={{ fontSize: 70 }}>404</h1>
 	}
 	return (
 		<section className='product-detail section__wrapper'>

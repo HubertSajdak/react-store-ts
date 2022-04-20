@@ -17,7 +17,7 @@ const Cart = () => {
 	const cartCounter = useSelector((state: RootState) => state.cart.totalQuantity)
 	useEffect(() => {
 		dispatch(cartActions.totalAmountCounter())
-	}, [cartItems])
+	}, [cartItems, dispatch])
 
 	return (
 		<section className='cart section__wrapper'>

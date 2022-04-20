@@ -4,9 +4,9 @@ export interface ItemsProps {
 	id: string
 	image: string
 	price: number
-	quantity?: number
+	quantity: number
 	title: string
-	totalPrice?: number
+	totalPrice: number
 }
 type CartSliceProps = {
 	totalQuantity: number
@@ -17,9 +17,10 @@ type CartSliceProps = {
 const cartSlice = createSlice({
 	name: 'cart',
 	initialState: {
-		totalQuantity: localStorage.getItem('cartCounter') > 0 ? JSON.parse(localStorage.getItem('cartCounter')) : 0,
+		totalQuantity:
+			+`${localStorage.getItem('cartCounter')}` > 0 ? JSON.parse(`${localStorage.getItem('cartCounter')}`) : 0,
 		totalAmount: 0,
-		items: localStorage.getItem('cartStorage') ? JSON.parse(localStorage.getItem('cartStorage')) : [],
+		items: localStorage.getItem('cartStorage') ? JSON.parse(`${localStorage.getItem('cartStorage')}`) : [],
 	} as CartSliceProps,
 	reducers: {
 		totalAmountCounter(state) {
@@ -27,7 +28,7 @@ const cartSlice = createSlice({
 				return total + item.totalPrice!
 			}, 0)
 		},
-		addItemToCart(state, action: PayloadAction<ItemsProps>) {
+		addItemToCart(state, action: PayloadAction<Omit<ItemsProps, 'quantity' | 'totalPrice'>>) {
 			const newItem = action.payload
 			const existingItem = state.items.find(item => item.id === newItem.id)
 			state.totalQuantity++
@@ -62,8 +63,8 @@ const cartSlice = createSlice({
 			if (existingItem!.quantity === 1) {
 				state.items = state.items.filter(item => item.id !== id)
 			} else {
-				existingItem!.quantity!--
-				existingItem!.totalPrice = existingItem!.totalPrice! - existingItem!.price
+				existingItem!.quantity--
+				existingItem!.totalPrice = existingItem!.totalPrice - existingItem!.price
 			}
 			localStorage.setItem('cartStorage', JSON.stringify(state.items))
 			localStorage.setItem('cartCounter', JSON.stringify(state.totalQuantity))

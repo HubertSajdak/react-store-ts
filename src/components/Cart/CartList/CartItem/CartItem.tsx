@@ -1,10 +1,19 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../../../store/cart-slice'
-import { CartListProps } from '../CartList'
 import './CartItem.css'
 
-const CartItem = ({ itemsData }: { itemsData: CartListProps['item'] }) => {
+export interface CartItemProps {
+	itemsData: {
+		id: string
+		image: string
+		price: number
+		quantity: number
+		title: string
+		totalPrice: number
+	}
+}
+
+const CartItem = ({ itemsData }: CartItemProps) => {
 	const dispatch = useDispatch()
 	const addItemHandler = () => {
 		dispatch(

@@ -9,13 +9,6 @@ import { AiOutlineArrowDown } from 'react-icons/ai'
 import './ShopNavigation.css'
 import { RootState } from '../../../store'
 
-interface ShopNavigationProps {
-	e: React.MouseEventHandler<HTMLInputElement>
-	target: {
-		checked: boolean
-		value: string
-	}
-}
 const ShopNavigation = () => {
 	const viewType = useSelector((state: RootState) => state.view.view)
 	const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState<boolean>(true)
@@ -41,16 +34,21 @@ const ShopNavigation = () => {
 		}
 	}
 	// { target: { checked: boolean; value: string } }
-	const filterHandler = (e: React.MouseEvent<HTMLInputElement>) => {
+	const filterHandler = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+		// @ts-ignore
 		if (e.target.checked === true) {
+			// @ts-ignore
+
 			setFilterCategory(filterCategory => [...filterCategory, e.target.value])
 		} else {
+			// @ts-ignore
+
 			setFilterCategory(filterCategory.filter(item => item !== e.target.value))
 		}
 	}
 	useEffect(() => {
 		dispatch(filteringActions.newFilterValue(filterCategory))
-	}, [filterCategory])
+	}, [dispatch, filterCategory])
 
 	const optionsMenuHandler = () => {
 		setIsOptionsMenuOpen(!isOptionsMenuOpen)

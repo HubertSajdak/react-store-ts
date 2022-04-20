@@ -1,7 +1,7 @@
 import React from 'react'
 import { RiEmotionSadFill } from 'react-icons/ri'
 import './Error.css'
-const Error = (): React.ReactElement => {
+const Error = () => {
 	return (
 		<div className='error-message'>
 			<RiEmotionSadFill className='error-message__icon' />

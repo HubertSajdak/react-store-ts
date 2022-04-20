@@ -3,7 +3,7 @@ import { FaSnapchatSquare, FaPinterestSquare } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import './Footer.css'
 
-const Footer = (): JSX.Element => {
+const Footer = () => {
 	const currDate = new Date()
 
 	return (

@@ -1,14 +1,12 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { AiOutlineFileSearch } from 'react-icons/ai'
 import { cartActions } from '../../../../../store/cart-slice'
 import { FaCartPlus } from 'react-icons/fa'
 import './ProductItem.css'
 import { RootState } from '../../../../../store'
-import { GetClothesProps } from '../../../../../store/fetchapi-slice'
+import { ClothProps } from 'store/fetchapi-slice'
 
-const ProductItem = ({ clothesData }: { clothesData: GetClothesProps }) => {
+const ProductItem = ({ clothesData }: { clothesData: ClothProps }) => {
 	const viewType = useSelector((state: RootState) => state.view.view)
 	const dispatch = useDispatch()
 	const addItemToCartHandler = () => {

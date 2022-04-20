@@ -1,36 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-export interface GetClothesProps {
+import { apiItems } from 'types'
+
+export interface ClothProps {
 	id: string
 	title: string
 	price: number
+	image: string
 	category: string
 	description: string
-	image: string
 }
+
 export interface ClothesSliceProps {
-	clothes: GetClothesProps | []
+	clothes: ClothProps[]
 	loading: boolean
 	error: boolean
 }
-export const getClothes = createAsyncThunk<GetClothesProps>('clothes/getClothes', async (thunkAPI: any) => {
+export const getClothes = createAsyncThunk('clothes/getClothes', async (_, thunkAPI) => {
 	try {
 		const res = await fetch('https://fakestoreapi.com/products')
 		if (!res.ok) {
 			throw new Error('Something went wrong!')
 		}
-		const data: GetClothesProps[] = await res.json()
-		const loadedData = []
-		for (const key in data) {
-			loadedData.push({
-				id: key,
-				title: data[key].title,
-				price: data[key].price,
-				category: data[key].category,
-				description: data[key].description,
-				image: data[key].image,
-			})
-		}
-		const clothesArr = loadedData.filter(item => {
+		const data: apiItems[] = await res.json()
+
+		const newData = data.map(item => ({
+			id: `${item.id}`,
+			title: item.title,
+			price: item.price,
+			category: item.category,
+			description: item.description,
+			image: item.image,
+		}))
+
+		const clothesArr = newData.filter(item => {
 			return ["men's clothing", "women's clothing"].includes(item.category)
 		})
 		return clothesArr

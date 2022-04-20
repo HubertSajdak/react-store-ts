@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-import { GetClothesProps } from '../../../store/fetchapi-slice'
+import { ClothProps } from '../../../store/fetchapi-slice'
 import './Slider.css'
 
-const Slider = ({ clothesData }: { clothesData: GetClothesProps[] }): JSX.Element | undefined => {
+const Slider = ({ clothesData }: { clothesData: ClothProps[] }) => {
 	const [current, setCurrent] = useState<number>(0)
 	const length = clothesData!.length
-	if (!Array.isArray(clothesData) || clothesData.length < 0) return
 	const prevSlide = (): void => setCurrent(current <= 0 ? length - 1 : current - 1)
 
 	const nextSlide = (): void => setCurrent(current === length - 1 ? 0 : current + 1)

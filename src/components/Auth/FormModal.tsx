@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, FormEventHandler, FocusEventHandler, ChangeEventHandler } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { userAuthActions } from '../../store/userAuth-slice'
 import { registerAuth, loginAuth } from '../../store/userAuth-slice'
@@ -19,7 +19,7 @@ const FormModal = () => {
 	// const isRegistered = useSelector((state: RootState) => state.regAuth.isRegistered)
 	const logErrorInfo: FormModalProps['logErrorInfo'] = useSelector((state: RootState) => state.logAuth.errorMessage)
 	const [isRegisterForm, setIsRegisterForm] = useState<boolean>(false)
-	const formRef = useRef<HTMLFormElement>(null)
+	const formRef = useRef<HTMLFormElement | null>(null)
 	// open/close modal handler while pressing the profile icon
 
 	const modalFormHandler = () => {
@@ -93,7 +93,7 @@ const FormModal = () => {
 								onChange={formik.handleChange}
 								onBlur={formik.handleBlur}
 								value={formik.values.username}
-								style={formik.touched.username && formik.errors.username && { backgroundColor: '#fe6d73' }}
+								style={formik.touched.username && formik.errors.username ? { backgroundColor: '#fe6d73' } : undefined}
 							/>
 						)}
 						{formik.touched.username && formik.errors.username ? (
@@ -109,7 +109,7 @@ const FormModal = () => {
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
 							value={formik.values.email}
-							style={formik.touched.email && formik.errors.email && { backgroundColor: '#fe6d73' }}
+							style={formik.touched.email && formik.errors.email ? { backgroundColor: '#fe6d73' } : undefined}
 						/>
 						{formik.touched.email && formik.errors.email ? (
 							<p className='form-modal__error-info'>{formik.errors.email}</p>
@@ -124,7 +124,7 @@ const FormModal = () => {
 							onChange={formik.handleChange}
 							onBlur={formik.handleBlur}
 							value={formik.values.password}
-							style={formik.touched.password && formik.errors.password && { backgroundColor: '#fe6d73' }}
+							style={formik.touched.password && formik.errors.password ? { backgroundColor: '#fe6d73' } : undefined}
 						/>
 						{formik.touched.password && formik.errors.password ? (
 							<p className='form-modal__error-info'>{formik.errors.password}</p>
