@@ -12,7 +12,8 @@ import FormModal from './components/Auth/FormModal'
 import Spinner from './components/UI/Spinner/Spinner'
 import './App.css'
 import { RootState } from './store'
-
+import PrivateRoute from 'Auth/PrivateRoute'
+import AuthWrapper from 'Auth/AuthWrapper'
 const About = React.lazy(() => import('./components/About/About'))
 const ProductDetail = React.lazy(() => import('./components/Shop/Products/ProductDetail/ProductDetail'))
 const Shop = React.lazy(() => import('./components/Shop/Shop'))
@@ -24,7 +25,7 @@ function App() {
 		dispatch(getClothes())
 	}, [dispatch])
 	return (
-		<div>
+		<AuthWrapper>
 			{isFormModalOpen && <FormModal />}
 
 			<Navbar />
@@ -50,13 +51,19 @@ function App() {
 						<Route path='/about'>
 							<About />
 						</Route>
+						<PrivateRoute path='/profile'>
+							<div>asd</div>
+						</PrivateRoute>
+						<Route path='*'>
+							<h1>not found</h1>
+						</Route>
 					</Switch>
 				</Suspense>
 			</main>
 			<footer>
 				<Footer />
 			</footer>
-		</div>
+		</AuthWrapper>
 	)
 }
 

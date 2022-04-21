@@ -12,6 +12,11 @@ interface FormModalProps {
 	regErrorInfo: string
 	logErrorInfo: string
 }
+export interface InitialFormValues {
+	username: string
+	email: string
+	password: string
+}
 
 const FormModal = () => {
 	const dispatch = useDispatch()
@@ -46,7 +51,7 @@ const FormModal = () => {
 			username: '',
 			email: '',
 			password: '',
-		},
+		} as InitialFormValues,
 		validationSchema: Yup.object({
 			username: Yup.lazy(() => {
 				if (isRegisterForm) {

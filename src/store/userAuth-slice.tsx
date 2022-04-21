@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { InitialFormValues } from 'components/Auth/FormModal'
 import { toast } from 'react-toastify'
 
 interface RegisterAithSliceProps {
@@ -16,39 +17,42 @@ interface LoginAuthSliceProps {
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-export const registerAuth: any = createAsyncThunk('registerAuth/registerAuth', async ({ values, thunkAPI }: any) => {
-	try {
-		const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
-			method: 'POST',
-			body: JSON.stringify({
-				email: values.email,
-				password: values.password,
-				returnSecureToken: true,
-			}),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-		let data = await res.json()
+export const registerAuth = createAsyncThunk(
+	'registerAuth/registerAuth',
+	async (values: InitialFormValues, thunkAPI) => {
+		try {
+			const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
+				method: 'POST',
+				body: JSON.stringify({
+					email: values.email,
+					password: values.password,
+					returnSecureToken: true,
+				}),
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+			let data = await res.json()
 
-		if (res.ok) {
-			toast.success('Account created', {
-				position: 'bottom-left',
-				theme: 'colored',
-			})
-		} else {
-			toast.error('Could not create an account', {
-				position: 'bottom-left',
-				theme: 'colored',
-			})
-			return thunkAPI.rejectWithValue(data.error.message)
+			if (res.ok) {
+				toast.success('Account created', {
+					position: 'bottom-left',
+					theme: 'colored',
+				})
+			} else {
+				toast.error('Could not create an account', {
+					position: 'bottom-left',
+					theme: 'colored',
+				})
+				return thunkAPI.rejectWithValue(data.error.message)
+			}
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error)
 		}
-	} catch (error) {
-		return thunkAPI.rejectWithValue(error)
 	}
-})
+)
 
-export const loginAuth: any = createAsyncThunk('loginAuth/loginAuth', async ({ values, thunkAPI }: any) => {
+export const loginAuth = createAsyncThunk('loginAuth/loginAuth', async (values: InitialFormValues, thunkAPI) => {
 	try {
 		const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, {
 			method: 'POST',
@@ -67,6 +71,7 @@ export const loginAuth: any = createAsyncThunk('loginAuth/loginAuth', async ({ v
 				position: 'bottom-left',
 				theme: 'colored',
 			})
+			//rzeczy z tokenami do nowego pliku
 			localStorage.setItem('idToken', data.idToken)
 		} else {
 			toast.error('Could not log in', {
@@ -88,19 +93,20 @@ const registerAuthSlice = createSlice({
 		errorMessage: '',
 	} as RegisterAithSliceProps,
 	reducers: {},
-	extraReducers: {
-		[registerAuth.pending]: state => {
+	extraReducers: builder => {
+		builder.addCase(registerAuth.pending, state => {
 			state.processing = true
-		},
-		[registerAuth.fulfilled]: state => {
+		})
+		builder.addCase(registerAuth.fulfilled, state => {
 			state.processing = false
 			state.error = false
-		},
-		[registerAuth.rejected]: (state, action: PayloadAction<string>) => {
+		})
+		builder.addCase(registerAuth.rejected, (state, action) => {
+			const payload = action.payload as string
 			state.processing = false
 			state.error = true
-			state.errorMessage = action.payload
-		},
+			state.errorMessage = payload
+		})
 	},
 })
 const loginAuthSlice = createSlice({
@@ -123,22 +129,24 @@ const loginAuthSlice = createSlice({
 			localStorage.removeItem('idToken')
 		},
 	},
-	extraReducers: {
-		[loginAuth.pending]: state => {
+	extraReducers: builder => {
+		builder.addCase(loginAuth.pending, state => {
 			state.processing = true
-		},
-		[loginAuth.fulfilled]: state => {
+		})
+		builder.addCase(loginAuth.fulfilled, state => {
 			state.processing = false
 			state.error = false
 			state.errorMessage = ''
 			state.isLogged = true
-		},
-		[loginAuth.rejected]: (state, action: PayloadAction<string>) => {
+		})
+		builder.addCase(loginAuth.rejected, (state, action) => {
+			const payload = action.payload as string
 			state.processing = false
 			state.error = true
-			state.errorMessage = action.payload
+			state.errorMessage = payload
 			state.token = null
-		},
+		})
+		// jak mam try caych action payload zawsze będzie unknown
 	},
 })
 const userAuthSlice = createSlice({
