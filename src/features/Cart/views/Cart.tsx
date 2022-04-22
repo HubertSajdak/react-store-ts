@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { cartActions } from '../../store/cart-slice'
-import { RootState } from '../../store'
+import { cartActions } from '../cart-slice'
+import { RootState } from '../../../store'
 import { Link } from 'react-router-dom'
 import { FiShoppingBag } from 'react-icons/fi'
 import { FaCcVisa, FaCcMastercard, FaCcPaypal, FaEthereum } from 'react-icons/fa'
 import { SiBitcoincash, SiAmericanexpress } from 'react-icons/si'
 import { BsCash } from 'react-icons/bs'
-import CartList from './CartList/CartList'
-import './Cart.css'
+import CartList from '../components/CartList/CartList'
+import '../Cart.css'
 
 const Cart = () => {
 	const dispatch = useDispatch()

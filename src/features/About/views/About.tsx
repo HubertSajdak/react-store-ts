@@ -1,5 +1,5 @@
-import aboutHeroImg from '../../assets/about-hero.jpg'
-import './About.css'
+import aboutHeroImg from '../../../assets/about-hero.jpg'
+import '../About.css'
 const About = () => {
 	return (
 		<section className='about section__wrapper'>

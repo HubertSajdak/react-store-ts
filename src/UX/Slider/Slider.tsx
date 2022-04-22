@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-import { ClothProps } from '../../../store/fetchapi-slice'
+import { ClothProps } from '../../store/fetchapi-slice'
 import './Slider.css'
 
 const Slider = ({ clothesData }: { clothesData: ClothProps[] }) => {

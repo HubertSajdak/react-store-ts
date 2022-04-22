@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import clothesReducer from './fetchapi-slice'
-import sortingReducer from './sorting-slice'
-import filteringReducer from './filtering-slice'
-import cartReducer from './cart-slice'
-import viewReducer from './view-slice'
-import { userAuthSlice, registerAuthSlice, loginAuthSlice } from './userAuth-slice'
+import sortingReducer from '../features/Shop/components/ShopNavigation/sorting-slice'
+import filteringReducer from '../features/Shop/components/ShopNavigation/filtering-slice'
+import cartReducer from '../features/Cart/cart-slice'
+import viewReducer from '../features/Shop/components/ShopNavigation/view-slice'
+import { userAuthSlice, registerAuthSlice, loginAuthSlice } from '../components/FormModal/userAuth-slice'
 const store = configureStore({
 	reducer: {
 		fetchClothes: clothesReducer.reducer,

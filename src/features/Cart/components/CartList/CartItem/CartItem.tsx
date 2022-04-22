@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { cartActions } from '../../../../store/cart-slice'
+import { cartActions } from '../../../cart-slice'
 import './CartItem.css'
 
 export interface CartItemProps {

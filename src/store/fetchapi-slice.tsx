@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { apiItems } from 'types'
-
+import axios from 'axios'
 export interface ClothProps {
 	id: string
 	title: string
@@ -17,12 +17,9 @@ export interface ClothesSliceProps {
 }
 export const getClothes = createAsyncThunk('clothes/getClothes', async (_, thunkAPI) => {
 	try {
-		const res = await fetch('https://fakestoreapi.com/products')
-		if (!res.ok) {
-			throw new Error('Something went wrong!')
-		}
-		const data: apiItems[] = await res.json()
+		const res = await axios('https://fakestoreapi.com/products')
 
+		const data: apiItems[] = await res.data
 		const newData = data.map(item => ({
 			id: `${item.id}`,
 			title: item.title,

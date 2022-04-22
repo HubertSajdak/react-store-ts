@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { userAuthActions, loginAuthActions } from '../../store/userAuth-slice'
+import { userAuthActions, loginAuthActions } from '../FormModal/userAuth-slice'
 import { AiOutlineBars, AiOutlineClose } from 'react-icons/ai'
 import { BsCart2 } from 'react-icons/bs'
 import { CgProfile } from 'react-icons/cg'

@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import hero from '../../assets/hero.jpg'
-import welcomeFilm from '../../assets/welcome-film1.mp4'
-import Slider from '../UI/Slider/Slider'
-import Error from '../UI/Error/Error'
-import Spinner from '../UI/Spinner/Spinner'
-import 'react-lazy-load-image-component/src/effects/blur.css'
-import '../Welcome/Welcome.css'
-import { RootState } from '../../store'
-import { ClothesSliceProps } from '../../store/fetchapi-slice'
+import hero from '../../../assets/hero.jpg'
+import welcomeFilm from '../../../assets/welcome-film1.mp4'
+import Slider from '../../../UX/Slider/Slider'
+import Error from '../../../UX/Error/Error'
+import Spinner from '../../../UX/Spinner/Spinner'
+import '../Welcome.css'
+import { RootState } from '../../../store'
+import { ClothesSliceProps } from '../../../store/fetchapi-slice'
 const Welcome = () => {
 	const {
 		clothes,

@@ -5,6 +5,7 @@ This site was created using:
 - HTML/JSX,
 - CSS (FLexbox,Grid),
 - React,
+- TypeScript,
 - Redux Toolkit,
 - React Router (version 5),
 - React Icons,

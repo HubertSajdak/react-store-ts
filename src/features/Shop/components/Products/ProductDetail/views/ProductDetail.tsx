@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { FaTruck } from 'react-icons/fa'
 import { MdAssignmentReturn, MdSell } from 'react-icons/md'
-import { cartActions } from '../../../../store/cart-slice'
-import './ProductDetail.css'
-import { RootState } from '../../../../store'
+import { cartActions } from '../../../../../Cart/cart-slice'
+import '../ProductDetail.css'
+import { RootState } from '../../../../../../store'
 
 interface UseParamsProps {
 	productId: string

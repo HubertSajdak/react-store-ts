@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { cartActions } from '../../../../../store/cart-slice'
+import { cartActions } from '../../../../../Cart/cart-slice'
 import { FaCartPlus } from 'react-icons/fa'
 import './ProductItem.css'
-import { RootState } from '../../../../../store'
+import { RootState } from '../../../../../../store'
 import { ClothProps } from 'store/fetchapi-slice'
 
 const ProductItem = ({ clothesData }: { clothesData: ClothProps }) => {

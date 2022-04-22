@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { InitialFormValues } from 'components/Auth/FormModal'
+import { InitialFormValues } from 'components/FormModal/FormModal'
 import { toast } from 'react-toastify'
-
 interface RegisterAithSliceProps {
 	processing: boolean
 	error: boolean
@@ -33,7 +32,6 @@ export const registerAuth = createAsyncThunk(
 				},
 			})
 			let data = await res.json()
-
 			if (res.ok) {
 				toast.success('Account created', {
 					position: 'bottom-left',

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import ShopNavigation from './ShopNavigation/ShopNavigation'
-import ProductList from './Products/ProductList/ProductList'
-import Spinner from '../UI/Spinner/Spinner'
-import Error from '../UI/Error/Error'
-import './Shop.css'
-import { RootState } from '../../store'
+import ShopNavigation from '../components/ShopNavigation/ShopNavigation'
+import ProductList from '../components/Products/ProductList/ProductList'
+import Spinner from '../../../UX/Spinner/Spinner'
+import Error from '../../../UX/Error/Error'
+import '../Shop.css'
+import { RootState } from '../../../store'
 
 interface ShopProps {
 	loading: boolean

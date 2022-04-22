@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import ProductItem from './ProductItem/ProductItem'
 import { useSelector } from 'react-redux'
 import './ProductList.css'
-import { RootState } from '../../../../store'
+import { RootState } from '../../../../../store'
 import { ClothProps } from 'store/fetchapi-slice'
 const ProductList = () => {
 	const clothesData = useSelector((state: RootState) => state.fetchClothes.clothes)

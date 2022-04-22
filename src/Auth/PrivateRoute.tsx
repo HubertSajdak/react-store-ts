@@ -2,7 +2,7 @@ import { Route, Redirect, RouteProps } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store'
 import { useState } from 'react'
-import Spinner from 'components/UI/Spinner/Spinner'
+import Spinner from 'UX/Spinner/Spinner'
 export interface PrivateRouteProps extends RouteProps {}
 
 const PrivateRoute = (props: PrivateRouteProps) => {

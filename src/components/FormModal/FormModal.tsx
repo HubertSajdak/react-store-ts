@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { userAuthActions } from '../../store/userAuth-slice'
-import { registerAuth, loginAuth } from '../../store/userAuth-slice'
+import { userAuthActions } from './userAuth-slice'
+import { registerAuth, loginAuth } from './userAuth-slice'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -74,9 +74,8 @@ const FormModal = () => {
 			if (isRegisterForm) {
 				dispatch(registerAuth(values))
 
-				//closing the modal after successful registration
-
-				dispatch(userAuthActions.modalFormHandler())
+				//switching to login form after successful registration
+				// setIsRegisterForm(!isRegisterForm)
 			} else {
 				dispatch(loginAuth(values))
 			}

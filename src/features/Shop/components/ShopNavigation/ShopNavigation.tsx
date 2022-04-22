@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { sortingActions } from '../../../store/sorting-slice'
-import { filteringActions } from '../../../store/filtering-slice'
-import { viewActions } from '../../../store/view-slice'
+import { sortingActions } from './sorting-slice'
+import { filteringActions } from './filtering-slice'
+import { viewActions } from './view-slice'
 import { FaThList, FaBoxes } from 'react-icons/fa'
 import { BsSortUp } from 'react-icons/bs'
 import { AiOutlineArrowDown } from 'react-icons/ai'
 import './ShopNavigation.css'
-import { RootState } from '../../../store'
+import { RootState } from '../../../../store'
 
 const ShopNavigation = () => {
 	const viewType = useSelector((state: RootState) => state.view.view)
